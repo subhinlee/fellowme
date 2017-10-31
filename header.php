@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//if the user is not logged in, it leads to signup page(signup.php)
 if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
     header('Location: signup.php');
 }
@@ -26,6 +26,8 @@ if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
@@ -79,7 +81,7 @@ if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
                 </a>
             </li>
             <li>
-                <a href="/logout.php">
+                <a href="logout.php">
                     <span><i class="fa fa-sign-out" aria-hidden="true"></i></span>
                     <span>Log out</span>
                 </a>
