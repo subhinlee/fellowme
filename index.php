@@ -14,7 +14,7 @@ include("header.php");
 
 			<div class="main">
 				<div class="widget">
-					<div class="title">views</div>
+					<div class="title">number of views</div>
 					<div class="chart"></div>
 				</div>
 				<div class="widget">
