@@ -101,7 +101,7 @@
 
 			<div class="main">
 				<div class="widget">
-					<div class="title">Number of views</div>
+					<div class="title">views</div>
 					<div class="chart"></div>
 				</div>
 				<div class="widget">
