@@ -14,17 +14,11 @@ include("header.php");
 
 			<div class="main">
 				<div class="widget">
-					<div class="title">number of views</div>
+					<div class="title">Todays Budget
+					</div>
 					<div class="chart"></div>
 				</div>
-				<div class="widget">
-					<div class="title">Number of likes</div>
-					<div class="chart"></div>
-				</div>
-				<div class="widget">
-					<div class="title">Number of comments</div>
-					<div class="chart"></div>
-				</div>
+				
 			</div>
 		</div>
 <?php

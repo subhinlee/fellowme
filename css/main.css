@@ -118,6 +118,7 @@ body {
 	font-size: 14px;
 	font-weight: 600;
 }
+
 /* main content styles */
 .main-content {
 	padding: 40px;
@@ -221,4 +222,8 @@ body {
 	border-top-right-radius: 6px;
 	color: #617085;
 	font-weight: 600;
+}
+
+.side-nav-active {
+	background-color: #233245;
 }

@@ -5,6 +5,10 @@ if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
     header('Location: signup.php');
 }
 
+$selectedNav = 1;
+if(isset($_GET['nav'])){
+    $selectedNav = $_GET['nav'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,31 +59,26 @@ if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
     </div>
     <nav>
         <ul>
-            <li>
-                <a href="overview.php">
+           <li <?php if( $selectedNav == 1){echo 'class="side-nav-active"';}?>>
+                <a href="index.php?nav=1">
+                    <span><i class="fa fa-home" aria-hidden="true"></i></span>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li <?php if( $selectedNav == 2){echo 'class="side-nav-active"';}?>>
+                <a href="setting.php?nav=2">
+                    <span><i class="fa fa-cog" aria-hidden="true"></i></span>
+                    <span>Setting</span>
+                </a>
+            </li>
+            <li <?php if( $selectedNav == 3){echo 'class="side-nav-active"';}?> >
+                <a href="overview.php?nav=3">
                     <span><i class="fa fa-bar-chart" aria-hidden="true"></i></span>
                     <span>Überblick</span>
                 </a>
             </li>
-            <li>
-                <a href="expense.php">
-
-                    <span><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
-                    <span>Ausgaben</span>
-                </a>
-            </li>
-            <li>
-                <a href="income.php">
-                    <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
-                    <span>Einkommen</span>
-                </a>
-            </li>
-            <li>
-                <a href="saving.php">
-                    <span><i class="fa fa-money" aria-hidden="true"></i></span>
-                    <span>Sparen</span>
-                </a>
-            </li>
+            
+            
             <li>
                 <a href="logout.php">
                     <span><i class="fa fa-sign-out" aria-hidden="true"></i></span>
