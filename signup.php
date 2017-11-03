@@ -15,21 +15,12 @@ if(isset($_SESSION["username"]) && $_SESSION["username"] != ""){
     <title>
     </title>
     <!-- all links for css-->
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/register.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
+    <link rel="stylesheet" href="css/signup.css">
     <!-- all scripts for js and jQuery-->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/signup.js"></script>
+
 </head>
 
 <body style="background-color: #1c2f52;">
@@ -113,89 +104,4 @@ if(isset($_SESSION["username"]) && $_SESSION["username"] != ""){
 </body>
 </html>
 
-<script>
-
-  function loginClicked(){
-
-    var username = $('#login-userName').val().trim();
-    var password = $('#login-password').val().trim();
-    var messagediv = $('#login-message');
-
-    if(username == "" || password == ""){
-      messagediv.html("Please fill all required fields");
-      return;
-    }
-
-    $.ajax({
-      type: 'GET',
-      contentType: 'application/json',
-      url: './api/login.php?userName=' + username + '&password=' + password,
-      dataType: "json",
-      //data:  FormToJSON($('#form-banner_add')),
-      success: function(data, textStatus){
-        if(data['status'] == "success"){
-          window.location.assign('index.php');
-        }else{
-           messagediv.html(data['message']);
-        }
-
-
-
-      },
-      error: function(textStatus){
-        console.log(textStatus);
-      }
-    })
-  }
-
-
-  function registerClicked(){
-
-    var username = $('#userName').val().trim();
-    var password = $('#password').val().trim();
-    var cpassword = $('#confirm-password').val().trim();
-    var messagediv = $('#message');
-    console.log(username + "/" + password + "/" + cpassword);
-
-    if(username == "" || password == ""  || cpassword == "" ){
-      messagediv.html("Please fill all required fields");
-      return;
-    }
-    if(password != cpassword){
-      messagediv.html("Please type the same password to confirm");
-      return;
-    }
-
-
-
-    $.ajax({
-      type: 'GET',
-      contentType: 'application/json',
-      url: './api/register.php?userName=' + username + '&password=' + password,
-      dataType: "json",
-      //data:  FormToJSON($('#form-banner_add')),
-      success: function(data, textStatus){
-        if(data['status'] == "success"){
-          $.confirm({
-            title: 'Success!',
-            content: 'You have successfully registered press OK to login',
-            buttons: {
-              confirm: function () {
-                window.location.assign('index.php');
-              }
-            }
-          });
-        }else{
-           messagediv.html(data['message']);
-        }
-
-
-
-      },
-      error: function(textStatus){
-        console.log(textStatus);
-      }
-    })
-  }
-
-</script>
+<script src="js/signup.js"></script>
