@@ -25,7 +25,6 @@ if(isset($_GET['nav'])){
     <link rel="stylesheet" href="css/main.css">
     <!-- all scripts for js and jQuery-->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
