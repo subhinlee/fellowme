@@ -20,7 +20,7 @@ if(isset($_GET['nav'])){
     <title>FellowMe</title>
     <!-- all links for css-->
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <!-- all scripts for js and jQuery-->
@@ -47,19 +47,21 @@ if(isset($_GET['nav'])){
         <ul>
            <li <?php if( $selectedNav == 1){echo 'class="side-nav-active"';}?>>
                 <a href="index.php?nav=1">
-                    <span><i class="fa fa-home" aria-hidden="true"></i></span>
+                    
+                    <span><i class="material-icons">home</i></span>
                     <span>Home</span>
+                    
                 </a>
             </li>
             <li <?php if( $selectedNav == 2){echo 'class="side-nav-active"';}?>>
                 <a href="setting.php?nav=2">
-                    <span><i class="fa fa-cog" aria-hidden="true"></i></span>
+                    <span><i class="material-icons">settings</i></span>
                     <span>Setting</span>
                 </a>
             </li>
             <li <?php if( $selectedNav == 3){echo 'class="side-nav-active"';}?> >
                 <a href="overview.php?nav=3">
-                    <span><i class="fa fa-bar-chart" aria-hidden="true"></i></span>
+                    <span><i class="material-icons">insert_chart</i></span>
                     <span>Überblick</span>
                 </a>
             </li>
@@ -67,7 +69,7 @@ if(isset($_GET['nav'])){
             
             <li>
                 <a href="logout.php">
-                    <span><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                    <span><i class="material-icons">exit_to_app</i></span>
                     <span>Log out</span>
                 </a>
             </li>

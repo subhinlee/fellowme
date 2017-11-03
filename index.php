@@ -1,6 +1,9 @@
 <?php
 include("header.php");
 ?>
+<!--index.css-->
+<link rel="stylesheet" href="css/index.css">
+
         <div class="main-content">
 			<div class="title">
 				Ihr nächstes Ziel
@@ -19,8 +22,8 @@ include("header.php");
 				</div>
 			</div>
 			<div class="plus-minus">
-				<button class="btn-income" onclick="incomeClicked();"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-				<button class="btn-expense" onclick="expenseClicked();"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+				<button class="btn-income" onclick="incomeClicked();"><i class="material-icons btn-plus-minus">add_circle</i></button>
+				<button class="btn-expense" onclick="expenseClicked();"><i class="material-icons btn-plus-minus">remove_circle</i></button>
 			</div>
 		</div>
 <?php

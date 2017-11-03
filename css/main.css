@@ -105,7 +105,7 @@ body {
 }
 .side-nav ul li a {
 	color: #fff;
-	display: block;
+	display: inline-flex;
 	text-decoration: none;
 }
 .side-nav ul li i {
@@ -248,11 +248,3 @@ body {
     outline:none;
 }
 
-.fa-plus-circle {
-	font-size: 50px;
-	color: #0596df;
-}
-.fa-minus-circle {
-	font-size: 50px;
-	color: #0596df;
-}
