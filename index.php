@@ -3,6 +3,7 @@ include("header.php");
 ?>
 <!--index.css-->
 <link rel="stylesheet" href="css/index.css">
+<script src="js/index.js"></script>
 
         <div class="main-content">
 			<div class="title">
@@ -45,23 +46,23 @@ include("header.php");
         </div>
         <div class="modal-body">
 		   <p>Amount</p>
-		  <input type="text"  class="form-control" ></input>
+		  <input type="number" id="amount" class="form-control" ></input>
 		  <hr/>
           
-		<div data-toggle="buttons">
+		<div data-toggle="buttons" id="desc_group">
           <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="0">
-			  <i class="material-icons">euro_symbol</i>
-		  </label>
+			  		<input type="radio" name="q1" value="extra income">
+			  		<i class="material-icons">euro_symbol</i>
+		  		</label>
           <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
-			  <i class="material-icons">star_rate</i>
-		  </label>
-        </div>
+			  		<input type="radio" name="q1" value="bonus">
+			  		<i class="material-icons">star_rate</i>
+		  		</label>
+    </div>
 		  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button onclick="addIncomeClicked();"type="button" class="btn btn-default" data-dismiss="modal">Add</button>
         </div>
       </div>
       
@@ -79,40 +80,40 @@ include("header.php");
         </div>
         <div class="modal-body">
 		   <p>Amount</p>
-		  <input type="text"  class="form-control" ></input>
+		  <input type="text" id="expense_amount" class="form-control" ></input>
 		  <hr/>
           
-		<div data-toggle="buttons">
+		<div data-toggle="buttons" id="expense_desc_group">
           <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="0">
+			  <input type="radio" name="q2" value="food">
 			  <i class="material-icons">local_dining</i>
 		  </label>
           <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
+			  <input type="radio" name="q2" value="supermarket">
 			  <i class="material-icons">local_grocery_store</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
+			  <input type="radio" name="q2" value="nightout">
 			  <i class="material-icons">local_bar</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
+			  <input type="radio" name="q2" value="entertainment">
 			  <i class="material-icons">local_activity</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
+			  <input type="radio" name="q2" value="shopping">
 			  <i class="material-icons">local_mall</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
+			  <input type="radio" name="q2" value="activity">
 			  <i class="material-icons">terrain</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
+			  <input type="radio" name="q2" value="gift">
 			  <i class="material-icons">local_florist</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
-			  <input type="radio" name="q1" value="1">
+			  <input type="radio" name="q2" value="extra expense">
 			  <i class="material-icons">star</i>
 		  </label>
 
@@ -121,7 +122,7 @@ include("header.php");
 		  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button onclick="addExpenseClicked();" type="button" class="btn btn-default" data-dismiss="modal">Add</button>
         </div>
       </div>
       

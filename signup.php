@@ -1,7 +1,7 @@
 <?php
 session_start();
 //if the user is already logged in then it leads to index page(index.php)
-if(isset($_SESSION["username"]) && $_SESSION["username"] != ""){
+if(isset($_SESSION["user_id"]) && $_SESSION["user_id"] != ""){
     header('Location: index.php');
 }
 
@@ -17,9 +17,12 @@ if(isset($_SESSION["username"]) && $_SESSION["username"] != ""){
     <!-- all links for css-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+
     <!-- all scripts for js and jQuery-->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/signup.js"></script>
 
@@ -106,88 +109,4 @@ if(isset($_SESSION["username"]) && $_SESSION["username"] != ""){
 </body>
 </html>
 
-<script>
-  function loginClicked(){
 
-  var username = $('#login-userName').val().trim();
-  var password = $('#login-password').val().trim();
-  var messagediv = $('#login-message');
-
-  if(username == "" || password == ""){
-    messagediv.html("Please fill all required fields");
-    return;
-  }
-
-  $.ajax({
-    type: 'GET',
-    contentType: 'application/json',
-    url: './api/login.php?userName=' + username + '&password=' + password,
-    dataType: "json",
-    //data:  FormToJSON($('#form-banner_add')),
-    success: function(data, textStatus){
-      if(data['status'] == "success"){
-        window.location.assign('index.php');
-      }else{
-        messagediv.html(data['message']);
-      }
-
-
-
-    },
-    error: function(textStatus){
-      console.log(textStatus);
-    }
-  })
-}
-
-
-function registerClicked(){
-
-  var username = $('#userName').val().trim();
-  var password = $('#password').val().trim();
-  var cpassword = $('#confirm-password').val().trim();
-  var messagediv = $('#message');
-  console.log(username + "/" + password + "/" + cpassword);
-
-  if(username == "" || password == ""  || cpassword == "" ){
-    messagediv.html("Please fill all required fields");
-    return;
-  }
-  if(password != cpassword){
-    messagediv.html("Please type the same password to confirm");
-    return;
-  }
-
-
-
-  $.ajax({
-    type: 'GET',
-    contentType: 'application/json',
-    url: './api/register.php?userName=' + username + '&password=' + password,
-    dataType: "json",
-    //data:  FormToJSON($('#form-banner_add')),
-    success: function(data, textStatus){
-      if(data['status'] == "success"){
-        $.confirm({
-          title: 'Success!',
-          content: 'You have successfully registered press OK to login',
-          buttons: {
-            confirm: function () {
-              window.location.assign('index.php');
-            }
-          }
-        });
-      }else{
-        messagediv.html(data['message']);
-      }
-
-
-
-    },
-    error: function(textStatus){
-      console.log(textStatus);
-    }
-  })
-}
-
-</script>

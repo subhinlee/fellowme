@@ -1,9 +1,12 @@
 <?php
 session_start();
 //if the user is not logged in, it leads to signup page(signup.php)
-if(!isset($_SESSION["username"]) || $_SESSION["username"] == ""){
+if(!isset($_SESSION["user_id"]) || $_SESSION["user_id"] == ""){
     header('Location: signup.php');
 }
+
+echo "<script> var user_id = '".$_SESSION["user_id"]."'; </script>";
+
 
 $selectedNav = 1;
 if(isset($_GET['nav'])){

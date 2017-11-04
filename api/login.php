@@ -11,11 +11,11 @@
   $stmt->bindParam("username", $userName);
   $stmt->bindParam("password", $password);
   $stmt->execute();
-  $user = $stmt->fetchAll(PDO::FETCH_OBJ);
+  $user = $stmt->fetchAll(PDO::FETCH_OBJ); // create an array of the row from the currently logged-in user
   $db = null; // for security reason
 
   if(isset($user) && $user != null){
-    $_SESSION["username"] = $userName;
+    $_SESSION["user_id"] = $user[0]->id; // get user's id into SESSION[]
     response('success','You are logged in',$user[0]);
   }else{
     response('error','Please type the right username and password',null);

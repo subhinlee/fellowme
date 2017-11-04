@@ -75,6 +75,89 @@ window.onload = function() {
 };
 
 
+function loginClicked(){
+  
+    var username = $('#login-userName').val().trim();
+    var password = $('#login-password').val().trim();
+    var messagediv = $('#login-message');
+  
+    if(username == "" || password == ""){
+      messagediv.html("Please fill all required fields");
+      return;
+    }
+  
+    $.ajax({
+      type: 'GET',
+      contentType: 'application/json',
+      url: './api/login.php?userName=' + username + '&password=' + password,
+      dataType: "json",
+      //data:  FormToJSON($('#form-banner_add')),
+      success: function(data, textStatus){
+        if(data['status'] == "success"){
+          window.location.assign('index.php');
+        }else{
+          messagediv.html(data['message']);
+        }
+  
+  
+  
+      },
+      error: function(textStatus){
+        console.log(textStatus);
+      }
+    })
+  }
+  
+  
+  function registerClicked(){
+  
+    var username = $('#userName').val().trim();
+    var password = $('#password').val().trim();
+    var cpassword = $('#confirm-password').val().trim();
+    var messagediv = $('#message');
+    console.log(username + "/" + password + "/" + cpassword);
+  
+    if(username == "" || password == ""  || cpassword == "" ){
+      messagediv.html("Please fill all required fields");
+      return;
+    }
+    if(password != cpassword){
+      messagediv.html("Please type the same password to confirm");
+      return;
+    }
+  
+  
+  
+    $.ajax({
+      type: 'GET',
+      contentType: 'application/json',
+      url: './api/register.php?userName=' + username + '&password=' + password,
+      dataType: "json",
+      //data:  FormToJSON($('#form-banner_add')),
+      success: function(data, textStatus){
+        if(data['status'] == "success"){
+          $.confirm({
+            title: 'Success!',
+            content: 'You have successfully registered press OK to login',
+            buttons: {
+              confirm: function () {
+                window.location.assign('index.php');
+              }
+            }
+          });
+        }else{
+          messagediv.html(data['message']);
+        }
+  
+  
+  
+      },
+      error: function(textStatus){
+        console.log(textStatus);
+      }
+    })
+  }
+  
 
 
 
