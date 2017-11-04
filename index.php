@@ -6,13 +6,17 @@ include("header.php");
 
         <div class="main-content">
 			<div class="title">
-				Ihr nächstes Ziel
-				<div class="progress">
-            		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-            		 aria-valuemin="0" aria-valuemax="100" style="width:40%">
-            	 	40% Complete (success)
-            		</div>
-        		</div>
+				
+			    <div class="goal-container">
+					<div class="progress">
+            			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+            			 aria-valuemin="0" aria-valuemax="100" style="width:40%">
+            	 		40% Complete (success)
+						</div>
+					
+					</div>
+						<button class="btn-goal" onclick="goalClicked();"><i class="material-icons btn-plus-minus">bubble_chart</i></button>
+				</div>
 			</div>
 
 			<div class="main">
@@ -29,8 +33,8 @@ include("header.php");
 
 
 
- <!-- Modal -->
- <div class="modal fade" id="myModal" role="dialog">
+ <!-- Modal Income -->
+ <div class="modal fade" id="myModal-income" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -63,6 +67,97 @@ include("header.php");
       
     </div>
   </div>
+<!-- Modal Expense -->
+<div class="modal fade" id="myModal-expense" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Today's Expense</h4>
+        </div>
+        <div class="modal-body">
+		   <p>Amount</p>
+		  <input type="text"  class="form-control" ></input>
+		  <hr/>
+          
+		<div data-toggle="buttons">
+          <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="0">
+			  <i class="material-icons">local_dining</i>
+		  </label>
+          <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="1">
+			  <i class="material-icons">local_grocery_store</i>
+		  </label>
+		  <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="1">
+			  <i class="material-icons">local_bar</i>
+		  </label>
+		  <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="1">
+			  <i class="material-icons">local_activity</i>
+		  </label>
+		  <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="1">
+			  <i class="material-icons">local_mall</i>
+		  </label>
+		  <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="1">
+			  <i class="material-icons">terrain</i>
+		  </label>
+		  <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="1">
+			  <i class="material-icons">local_florist</i>
+		  </label>
+		  <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q1" value="1">
+			  <i class="material-icons">star</i>
+		  </label>
+
+
+        </div>
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal Goal -->
+ <div class="modal fade" id="myModal-goal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Set your goal!</h4>
+        </div>
+        <div class="modal-body">
+		   <p>What is your goal?</p>
+		   <input type="text"  class="form-control" ></input>
+		</div>
+		<hr/>
+		<div class="modal-body">
+		   <p>How much will you need?</p>
+		   <input type="text"  class="form-control" ></input>
+		</div>
+		<hr/>
+		<div class="modal-body">
+		   <p>On which day?</p>
+		   <input type="date"  class="form-control" ></input>
+		</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     
 
 <?php
@@ -70,11 +165,14 @@ include("footer.php");
 ?>
 <script>
   function incomeClicked(){
-	$("#myModal").modal();
+	$("#myModal-income").modal();
   }
 
   function expenseClicked(){
-
+    $("#myModal-expense").modal();
+  }
+  function goalClicked(){
+    $("#myModal-goal").modal();
   }
 </script>
 
