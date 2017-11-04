@@ -140,20 +140,20 @@ include("header.php");
         </div>
         <div class="modal-body">
 		   <p>What is your goal?</p>
-		   <input type="text"  class="form-control" ></input>
+		   <input type="text" id="goal_desc" class="form-control" ></input>
 		</div>
 		<hr/>
 		<div class="modal-body">
 		   <p>How much will you need?</p>
-		   <input type="text"  class="form-control" ></input>
+		   <input type="number" id="goal_amount"  class="form-control" ></input>
 		</div>
 		<hr/>
 		<div class="modal-body">
 		   <p>On which day?</p>
-		   <input type="date"  class="form-control" ></input>
+		   <input type="date" id="date_end" class="form-control" ></input>
 		</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" onclick="setGoalClicked();" class="btn btn-default" data-dismiss="modal">Set the goal</button>
         </div>
       </div>
       
