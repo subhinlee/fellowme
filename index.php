@@ -4,20 +4,18 @@ include("header.php");
 <!--index.css-->
 <link rel="stylesheet" href="css/index.css">
 <script src="js/index.js"></script>
-
-        <div class="main-content">
+<!--index main content-->
+<div class="main-content">
 			<div class="title">
-				
-			    <div class="goal-container">
-					<div class="progress">
+				  <div class="goal-container">
+					    <div class="progress">
             			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
             			 aria-valuemin="0" aria-valuemax="100" style="width:40%">
             	 		40% Complete (success)
-						</div>
-					
-					</div>
-						<button class="btn-goal" onclick="goalClicked();"><i class="material-icons btn-plus-minus">bubble_chart</i></button>
-				</div>
+						      </div>
+					    </div>
+						  <button class="btn-goal" onclick="goalClicked();"><i class="material-icons btn-plus-minus">bubble_chart</i></button>
+				  </div>
 			</div>
 
 			<div class="main">
@@ -30,7 +28,7 @@ include("header.php");
 				<button class="btn-income" onclick="incomeClicked();"><i class="material-icons btn-plus-minus">add_circle</i></button>
 				<button class="btn-expense" onclick="expenseClicked();"><i class="material-icons btn-plus-minus">remove_circle</i></button>
 			</div>
-		</div>
+</div>
 
 
 
@@ -80,7 +78,7 @@ include("header.php");
         </div>
         <div class="modal-body">
 		   <p>Amount</p>
-		  <input type="text" id="expense_amount" class="form-control" ></input>
+		  <input type="number" id="expense_amount" class="form-control" ></input>
 		  <hr/>
           
 		<div data-toggle="buttons" id="expense_desc_group">
