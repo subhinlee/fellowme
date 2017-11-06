@@ -7,16 +7,28 @@ include("header.php");
 <div class="main-content">
     <div class="main">
 				<div class="widget">
-					<div class="title">Setting</div>
-					<div class="chart"></div>
-				</div>
-	</div>
-    
-    <div class="setting_container">
-				<button class="btn-regIncome" onclick="regIncomeClicked();"><i class="material-icons btn-setting">add_circle</i></button>
-				<button class="btn-regExpense" onclick="regExpenseClicked();"><i class="material-icons btn-setting">remove_circle</i></button>
-                <button class="btn-saving" onclick="savingClicked();"><i class="material-icons btn-setting">monetization_on</i></button>
-    </div>
+                    <div class="title">
+                      Regular Income
+                      <button class="btn-regIncome" onclick="regIncomeClicked();"><i class="material-icons btn-setting">add_circle</i></button>
+                    </div>
+					          <div class="chart"></div>
+        </div>
+        <div class="widget">
+                    <div class="title">
+                      Regular Expense 
+                      <button class="btn-regExpense" onclick="regExpenseClicked();"><i class="material-icons btn-setting">remove_circle</i></button>
+                    </div>
+					          <div class="chart"></div>
+        </div>
+        <div class="widget">
+                    <div class="title">
+                      Saving
+                      <button class="btn-saving" onclick="savingClicked();"><i class="material-icons btn-setting">monetization_on</i></button>
+                    </div>
+					          <div class="chart"></div>
+        </div>
+        
+	  </div>
 </div>
 
  <!-- Modal regular Income -->
@@ -75,27 +87,31 @@ include("header.php");
 		<div data-toggle="buttons" id="regExpense_desc_group">
           <label class="btn btn-default btn-circle btn-lg">
 			  <input type="radio" name="q2" value="rent">
-			  <i class="material-icons">local_dining</i>
+			  <i class="material-icons">location_city</i>
 		  </label>
           <label class="btn btn-default btn-circle btn-lg">
 			  <input type="radio" name="q2" value="utilities">
-			  <i class="material-icons">local_grocery_store</i>
+			  <i class="material-icons">whatshot</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
 			  <input type="radio" name="q2" value="mobile">
-			  <i class="material-icons">local_bar</i>
+			  <i class="material-icons">smartphone</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
 			  <input type="radio" name="q2" value="insurance">
-			  <i class="material-icons">local_activity</i>
+			  <i class="material-icons">security</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
 			  <input type="radio" name="q2" value="fees">
-			  <i class="material-icons">local_mall</i>
+			  <i class="material-icons">school</i>
+      </label>
+      <label class="btn btn-default btn-circle btn-lg">
+			  <input type="radio" name="q2" value="membership">
+			  <i class="material-icons">group</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
 			  <input type="radio" name="q2" value="internet">
-			  <i class="material-icons">terrain</i>
+			  <i class="material-icons">settings_input_antenna</i>
 		  </label>
 		  <label class="btn btn-default btn-circle btn-lg">
 			  <input type="radio" name="q2" value="other expense">

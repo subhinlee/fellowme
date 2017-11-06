@@ -1,4 +1,13 @@
 .btn-setting{
-    font-size: 50px;
-	color: #0596df;
+    font-size: 33px;
+    color: #0596df;
+}
+.btn-regIncome, .btn-regExpense, .btn-saving{
+	float: right;
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
 }
