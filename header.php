@@ -26,10 +26,23 @@ if(isset($_GET['nav'])){
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="lib/tooltipster/css/tooltipster.bundle.min.css">
     <!-- all scripts for js and jQuery-->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="lib/tooltipster/js/tooltipster.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.tool').tooltipster(
+                {
+                    delay: 0,
+                    animation: "grow",
+                    side: "bottom"
+                }
+            );
+        });
+    </script>
 
 </head>
 <body>

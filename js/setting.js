@@ -19,6 +19,7 @@ function addregIncomeClicked(){
         success: function(data, textStatus){
           if(data['status'] == "success"){
             console.log("yeay");
+            getSettingData();
           }else{
             console.log(data['message']);
           }
@@ -50,6 +51,7 @@ function addregExpenseClicked(){
         success: function(data, textStatus){
           if(data['status'] == "success"){
             console.log("yeay");
+            getSettingData();
           }else{
             console.log(data['message']);
           }
@@ -79,6 +81,7 @@ function setSavingClicked(){
         success: function(data, textStatus){
           if(data['status'] == "success"){
             console.log("yeay");
+            getSettingData();
           }else{
             console.log(data['message']);
           }
@@ -88,3 +91,15 @@ function setSavingClicked(){
         }
       });
 }
+
+ //when each setting button clicked
+ function regIncomeClicked(){
+	$("#myModal-regIncome").modal();
+  }
+
+  function regExpenseClicked(){
+    $("#myModal-regExpense").modal();
+  }
+  function savingClicked(){
+    $("#myModal-saving").modal();
+  }

@@ -1,31 +1,71 @@
 <?php
-include("header.php");
+include ("header.php");
 ?>
 <!--css for setting.php-->
 <link rel="stylesheet" href="css/setting.css">
 <script src="js/setting.js"></script>
+
 <div class="main-content">
     <div class="main">
 				<div class="widget">
                     <div class="title">
-                      Regular Income
+                      Regular Income  
                       <button class="btn-regIncome" onclick="regIncomeClicked();"><i class="material-icons btn-setting">add_circle</i></button>
                     </div>
-					          <div class="chart"></div>
+					          <div class="regIncome-container">
+                    <table class="table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        
+      </tr>
+    </thead>
+    <tbody id="income-table">
+     
+    </tbody>
+  </table>
+                    </div>
         </div>
         <div class="widget">
                     <div class="title">
                       Regular Expense 
                       <button class="btn-regExpense" onclick="regExpenseClicked();"><i class="material-icons btn-setting">remove_circle</i></button>
                     </div>
-					          <div class="chart"></div>
+					          <div class="regExpense-container">
+                    <table class="table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+    
+      </tr>
+    </thead>
+    <tbody id="expense-table">
+     
+    </tbody>
+  </table>
+                    </div>
         </div>
         <div class="widget">
                     <div class="title">
                       Saving
                       <button class="btn-saving" onclick="savingClicked();"><i class="material-icons btn-setting">monetization_on</i></button>
                     </div>
-					          <div class="chart"></div>
+					          <div class="saving-container">
+                    <table class="table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        
+      </tr>
+    </thead>
+    <tbody id="saving-table">
+     
+    </tbody>
+  </table>
+                    </div>
         </div>
         
 	  </div>
@@ -47,18 +87,18 @@ include("header.php");
 		  <hr/>
           
 		<div data-toggle="buttons" id="regIncome_desc_group">
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Wage">
 			  		<input type="radio" name="q1" value="wage">
 			  		<i class="material-icons">work</i>
-		  </label>
-          <label class="btn btn-default btn-circle btn-lg">
+		      </label>
+          <label class="btn btn-default btn-circle btn-lg tool" title="Student loans">
 			  		<input type="radio" name="q1" value="student loan">
 			  		<i class="material-icons">account_balance</i>
           </label>
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Extra Income">
 			  		<input type="radio" name="q1" value="other income">
 			  		<i class="material-icons">star_rate</i>
-		  </label>
+		      </label>
     </div>
 		  
         </div>
@@ -152,45 +192,84 @@ include("header.php");
     </div>
   </div>
 <?php
-include("footer.php");
+include ("footer.php");
 ?>
 
 <script>
-  function regIncomeClicked(){
-	$("#myModal-regIncome").modal();
+  getSettingData();
+
+  function populateInocme(data){
+    var html = "";
+    for(var i = 0; i < data.length; i++){
+      html += "<tr>"+
+               "<td>"+data[i].description+"</td>"+
+               "<td>"+data[i].amount+"</td>"+
+               "</tr>";
+      
+    }
+    $("#income-table").html(html);
+  }
+  function populateExpense(data){
+    var html = "";
+    for(var i = 0; i < data.length; i++){
+      html += "<tr>"+
+               "<td>"+data[i].description+"</td>"+
+               "<td>"+data[i].amount+"</td>"+
+               "</tr>";
+      
+    }
+    $("#expense-table").html(html);
+  }
+  function populateSaving(data){
+    var html = "";
+    for(var i = 0; i < data.length; i++){
+      html += "<tr>"+
+               "<td>"+data[i].description+"</td>"+
+               "<td>"+data[i].amount+"</td>"+
+               "</tr>";
+      
+    }
+    $("#saving-table").html(html);
+  }
+  
+  function populateSettingData(result){
+       populateInocme(result.data.income);
+       populateExpense(result.data.expense);
+       populateSaving(result.data.saving);
   }
 
-  function regExpenseClicked(){
-    $("#myModal-regExpense").modal();
+  
+  function getSettingData(){
+    $.ajax({
+        type: 'GET',
+        contentType: 'application/json',
+        url: './api/getSettingData.php?userId=' + user_id,
+        dataType: "json",
+        //data:  FormToJSON($('#form-banner_add')),
+        success: function(result, textStatus){
+          if(result['status'] == "success"){
+            console.log(result);
+            
+
+            populateSettingData(result);
+
+
+          }else{
+            console.log(result['message']);
+          }
+        },
+        error: function(textStatus){
+          console.log(textStatus);
+        }
+      });
   }
-  function savingClicked(){
-    $("#myModal-saving").modal();
-  }
+
+
 </script>
 <!--button styles-->
 <style type="text/css">
       
-      .btn-circle {
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        padding: 6px 0;
-        font-size: 12px;
-        line-height: 1.428571429;
-        border-radius: 15px;
-      }
-      .btn-circle.btn-lg {
-        width: 50px;
-        height: 50px;
-        padding: 13px 13px;
-        font-size: 18px;
-        line-height: 1.33;
-		border-radius: 25px;
-		
-	  }
-	  .btn {
-		  outline:0 !important;
-	  }
+
 	  
 
-  </style>
+</style>
