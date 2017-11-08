@@ -172,7 +172,33 @@ include("footer.php");
   }
   function goalClicked(){
     $("#myModal-goal").modal();
-  }
+	}
+	getSettingData();
+	
+	function getSettingData(){
+		$.ajax({
+        type: 'GET',
+        contentType: 'application/json',
+        url: './api/getTodaysBudget.php?userId=' + user_id,
+        dataType: "json",
+        //data:  FormToJSON($('#form-banner_add')),
+        success: function(result, textStatus){
+          if(result['status'] == "success"){
+            console.log(result);
+            
+
+            //populateSettingData(result);
+
+
+          }else{
+            console.log(result['message']);
+          }
+        },
+        error: function(textStatus){
+          console.log(textStatus);
+        }
+      });
+	}
 </script>
 
 <!--button styles-->
