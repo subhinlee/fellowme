@@ -16,7 +16,9 @@ include('globalFunction.php');
   $stmt->execute();
   $user = $stmt->fetchAll(PDO::FETCH_OBJ);
   $db = null; // for security reason
-
+  
+  
+  
   if(isset($user) && $user != null){
     $db = connection();
     $sql = "UPDATE tbl_fixed SET  amount = :amount WHERE id = :id "; 

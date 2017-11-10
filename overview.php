@@ -9,26 +9,7 @@ include ("header.php");
     <div class="main-content">
 		<div class="widget">
                 <!--title-->
-		        <div class="title" id="analyticTitle">Monthly Analytics 
-                    <div class="form-group" id="monthform">
-                            <select class="form-control" id="sb-month">
-                                <option value="10">2017 Oct</option>
-                                <option value="11">2017 Nov</option>
-                                <option value="12">2017 Dec</option>
-                                <option value="1">2018 Jan</option>
-                                <option value="2">2018 Feb</option>
-                                <option value="3">2018 March</option>
-                                <option value="4">2018 Apr</option>
-                                <option value="5">2018 May</option>
-                                <option value="6">2018 June</option>
-                                <option value="7">2018 July</option>
-                                <option value="8">2018 Aug</option>
-                                <option value="9">2018 Sep</option>
-                                <option value="10">2018 Oct</option>
-                                <option value="11">2018 Nov</option>
-                                <option value="12">2018 Dec</option>
-                            </select>
-                    </div>
+		        <div class="title" id="analyticTitle">Current Month Analytic
                 </div>
                 
                 <!--charts-->
@@ -53,102 +34,160 @@ include ("footer.php");
 ?>
     
 <!--stacked bar chart-->    
-<script type="text/javascript">
+<script>
+    initValues();
+
+    function initValues(){
+        $.ajax({
+        type: 'GET',
+        contentType: 'application/json',
+        url: './api/getChartData.php?userId=' + user_id,
+        dataType: "json",
+        //data:  FormToJSON($('#form-banner_add')),
+        success: function(result, textStatus){
+          if(result['status'] == "success"){
+              console.log(result.data);
+              initChartData2(result.data.chart2);
+              initChartData1(result.data.chart1);
+              initChartData3(result.data.chart3);
+              populateChart();
+
+          }else{
+            console.log(result['message']);
+          }
+        },
+        error: function(textStatus){
+          console.log(textStatus);
+        }
+      });
+    }
+    function initChartData2(data){
+        chart2Data = [
+            ['Category', 'Costs per Month']
+        ];
+        for(var i = 0; i < data.length; i++){
+            chart2Data.push([data[i].description, parseInt(data[i].total)]);
+        }
+        console.log(chart2Data);
+    }
+    function initChartData1(data){
+        chart1Data = [
+            ['Month', 'Fixed Expense', 'Variable Costs', 'Saving', 'Goal','Rest']
+        ];
+        var temp = [];
+        
+        temp.push(data['currmonth']);
+        temp.push(data['totalexpenses']);
+        temp.push(data['totalvariable']);
+        temp.push(data['totalsaving']);
+        temp.push(data['totalgoal']);
+        temp.push(data['totalincome'] - (data['totalgoal']+data['totalsaving']+data['totalvariable']+data['totalexpenses']));
+        
+        
+        
+        
+        
+
+        chart1Data.push(temp);
+        console.log(chart1Data);
+    }
+    function initChartData3(data){
+        chart3Data = [
+            ['Month','Expenses']
+        ];
+        for(var i = 0; i < data.length; i++){
+            chart3Data.push([data[i].date, parseInt(data[i].amount)]);
+        }
+        console.log(chart3Data);
+    }
+
+
+function populateChart(){
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart1);
-    function drawChart1() {
-        var data = google.visualization.arrayToDataTable([
-            ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
-             'Western', 'Literature', { role: 'annotation' } ],
-            ['2010', 10, 24, 20, 32, 18, 5, '']
-          ]);
+    google.charts.setOnLoadCallback(drawChart2);
+    google.charts.setOnLoadCallback(drawChart3);
+
     
-          var view = new google.visualization.DataView(data);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
-          var options = {
-            legend: { position: 'top', maxLines: 3 },
-            bar: { groupWidth: '75%' },
-            isStacked: true,
-          };
-      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-      chart.draw(view, options);
-  }
-</script>
-<!--pie chart-->  
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart2);
+    $(window).resize(function(){
+        drawChart1();
+        drawChart2();
+        drawChart3();
+    });
+}
 
-      function drawChart2() {
+      
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
+
+
+
+
+
+    var chart1Data = [
+            ['Month', 'Fixed Expense', 'Variable Costs', 'Saving', 'Goal','Rest'],
+            ['Nov', 10, 24, 0, 32,20]
+          ];
+
+    var chart2Data = [
+          ['Category', 'Costs per Month'],
           ['Work',     11],
           ['Eat',      2],
           ['Commute',  2],
           ['Watch TV', 2],
           ['Sleep',    7]
-        ]);
+        ];
 
+    var chart3Data = [
+          ['Month','Expenses'],
+          ['Dec 2016', 400],
+          ['Jan 2017', 400],
+          ['Feb', 460],
+          ['March', 1120],
+          ['April', 540],
+          ['May', 400],
+          ['June', 460],
+          ['July', 1120],
+          ['Aug', 540],
+        ];
+
+
+
+
+
+
+
+    function drawChart1() {
+        var data = google.visualization.arrayToDataTable(chart1Data);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0,1,2,3,4,5]);
         var options = {
-          title: 'My Daily Activities'
+            legend: { position: 'top', maxLines: 3 },
+            bar: { groupWidth: '75%' },
+            isStacked: true,
         };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(view, options);
+    }
 
+
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable(chart2Data);
+        var options = {
+          title: 'Costs by Category'
+        };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
       }
-    
-      $(window).resize(function(){
-        drawChart1();
-        drawChart2();
-        drawChart3();
-      });
-</script>
-<!--line graph-->
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
 
       function drawChart3() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year','Expenses'],
-          ['2004', 400],
-          ['2005', 460],
-          ['2006', 1120],
-          ['2007', 540]
-        ]);
-
+        var data = google.visualization.arrayToDataTable(chart3Data);
         var options = {
-          title: 'Company Performance',
+          title: 'Monthly Expenses',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
-
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
         chart.draw(data, options);
       }
       
 </script>
-
-<style>
-    #analyticTitle{
-        height:54px !important;
-    }
-    #monthform{
-        float: right;
-        width: 110px;
-        margin-right: 5px;
-    }
-
-    .chart {
-      width: 100%; 
-      min-height: 450px;
-    }
-</style>
