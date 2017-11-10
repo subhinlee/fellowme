@@ -77,7 +77,7 @@ if(isset($_GET['nav'])){
             <li <?php if( $selectedNav == 3){echo 'class="side-nav-active"';}?> >
                 <a href="overview.php?nav=3">
                     <span><i class="material-icons">insert_chart</i></span>
-                    <span>Überblick</span>
+                    <span>Overview</span>
                 </a>
             </li>
             

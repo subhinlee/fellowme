@@ -1,6 +1,17 @@
 .btn-plus-minus{
-    font-size: 50px;
-	color: #0596df;
+    font-size: 36px;
+    color: #0596df;
+    margin-top: -4px;
+}
+
+.btn-income, .btn-expense{
+	float: right;
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
 }
 
 .goal-container{
@@ -9,4 +20,29 @@
 }
 .progress{
     width:90%;
+    height:35px !important;
+    margin-bottom: 0 !important; 
+}
+.progress-bar-success {
+    background-color: #5cb85c;
+    font-size: 16px;
+    padding-top: 7px;
+}
+#goalPercentage-text{
+    min-width:150px;
+    color:#33505f;
+}
+#goalTitle{
+    width: 100%;
+    text-align: center;
+    color: #667589;
+    font-size: 24px;
+}
+
+.btn-setgoal{
+    font-size: 35px;
+	color: #0596df;
+}
+.deleteTrack{
+    cursor: pointer;
 }

@@ -27,46 +27,43 @@ include ("header.php");
   </table>
                     </div>
         </div>
-        <div class="widget">
+                <div class="widget">
                     <div class="title">
                       Regular Expense 
                       <button class="btn-regExpense" onclick="regExpenseClicked();"><i class="material-icons btn-setting">remove_circle</i></button>
                     </div>
 					          <div class="regExpense-container">
-                    <table class="table">
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Amount</th>
-    
-      </tr>
-    </thead>
-    <tbody id="expense-table">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Category</th>
+                              <th>Amount</th>
+                            </tr>
+                          </thead>
+                          <tbody id="expense-table">
      
-    </tbody>
-  </table>
+                          </tbody>
+                        </table>
                     </div>
-        </div>
-        <div class="widget">
+                </div>
+                <div class="widget">
                     <div class="title">
                       Saving
                       <button class="btn-saving" onclick="savingClicked();"><i class="material-icons btn-setting">monetization_on</i></button>
                     </div>
 					          <div class="saving-container">
-                    <table class="table">
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Amount</th>
-        
-      </tr>
-    </thead>
-    <tbody id="saving-table">
-     
-    </tbody>
-  </table>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Category</th>
+                                <th>Amount</th>
+                              </tr>
+                            </thead>
+                            <tbody id="saving-table">
+                            </tbody>
+                          </table>
                     </div>
-        </div>
+                </div>
         
 	  </div>
 </div>
@@ -125,35 +122,35 @@ include ("header.php");
 		  <hr/>
           
 		<div data-toggle="buttons" id="regExpense_desc_group">
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Rent">
 			  <input type="radio" name="q2" value="rent">
 			  <i class="material-icons">location_city</i>
 		  </label>
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Utilities">
 			  <input type="radio" name="q2" value="utilities">
 			  <i class="material-icons">whatshot</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Mobile">
 			  <input type="radio" name="q2" value="mobile">
 			  <i class="material-icons">smartphone</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Insurance">
 			  <input type="radio" name="q2" value="insurance">
 			  <i class="material-icons">security</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Fees">
 			  <input type="radio" name="q2" value="fees">
 			  <i class="material-icons">school</i>
       </label>
-      <label class="btn btn-default btn-circle btn-lg">
+      <label class="btn btn-default btn-circle btn-lg tool" title="Membership">
 			  <input type="radio" name="q2" value="membership">
 			  <i class="material-icons">group</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Cables">
 			  <input type="radio" name="q2" value="internet">
 			  <i class="material-icons">settings_input_antenna</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Other Expense">
 			  <input type="radio" name="q2" value="other expense">
 			  <i class="material-icons">star</i>
 		  </label>
@@ -203,7 +200,7 @@ include ("footer.php");
     for(var i = 0; i < data.length; i++){
       html += "<tr>"+
                "<td>"+data[i].description+"</td>"+
-               "<td>"+data[i].amount+"</td>"+
+               "<td>"+data[i].amount+" €</td>"+
                "</tr>";
       
     }
@@ -214,7 +211,7 @@ include ("footer.php");
     for(var i = 0; i < data.length; i++){
       html += "<tr>"+
                "<td>"+data[i].description+"</td>"+
-               "<td>"+data[i].amount+"</td>"+
+               "<td>"+data[i].amount+" €</td>"+
                "</tr>";
       
     }
@@ -225,7 +222,7 @@ include ("footer.php");
     for(var i = 0; i < data.length; i++){
       html += "<tr>"+
                "<td>"+data[i].description+"</td>"+
-               "<td>"+data[i].amount+"</td>"+
+               "<td>"+data[i].amount+" €</td>"+
                "</tr>";
       
     }

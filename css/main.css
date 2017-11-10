@@ -208,7 +208,8 @@ body {
 .widget {
 	flex-basis: 300px;
 	flex-grow: 10;
-	height: 300px;
+	min-height: 300px;
+	height: auto;
 	margin: 15px;
 	border-radius: 6px;
 	background-color: #ffffff;
@@ -226,26 +227,6 @@ body {
 
 .side-nav-active {
 	background-color: #233245;
-}
-.btn-income{
-	padding-left: 20px;
-	padding-bottom: 12px;
-	background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-}
-.btn-expense{
-	padding-right: 20px;
-	float: right;
-	background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
 }
 
 .btn-goal{

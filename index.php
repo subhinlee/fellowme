@@ -1,5 +1,6 @@
 <?php
-include("header.php");
+include ("header.php");
+
 ?>
 <!--index.css-->
 <link rel="stylesheet" href="css/index.css">
@@ -7,27 +8,50 @@ include("header.php");
 <!--index main content-->
 <div class="main-content">
 			<div class="title">
+        <p id="goalTitle"></p>
 				  <div class="goal-container">
 					    <div class="progress">
             			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-            			 aria-valuemin="0" aria-valuemax="100" style="width:40%">
-            	 		40% Complete (success)
+            			 aria-valuemin="0" aria-valuemax="100" id="goalPercentage-bar" style="width:0%">
+            	 		<p id="goalPercentage-text"></p>
 						      </div>
 					    </div>
-						  <button class="btn-goal" onclick="goalClicked();"><i class="material-icons btn-plus-minus">bubble_chart</i></button>
+						  <button class="btn-goal" onclick="goalClicked();"><i class="material-icons btn-setgoal tool" title="Set your goal">rowing</i></button>
 				  </div>
 			</div>
-
-			<div class="main">
-				<div class="widget">
-					<div class="title">Todays Budget</div>
-					<div class="chart"></div>
-				</div>
-			</div>
-			<div class="plus-minus">
-				<button class="btn-income" onclick="incomeClicked();"><i class="material-icons btn-plus-minus">add_circle</i></button>
-				<button class="btn-expense" onclick="expenseClicked();"><i class="material-icons btn-plus-minus">remove_circle</i></button>
-			</div>
+      
+			    <div class="main">
+				    <div class="widget">
+					      <div class="title">Today's Budget</div>
+					      <div class="todaysbudget-container">
+                     <div id="leftover-container">
+                     </div>
+                     <div id="dailybudget-container">
+                     </div>
+                </div>
+            </div>
+            <div class="widget">
+				    	  <div class="title">Today's Track
+                     
+			           	      <button class="btn-income" onclick="incomeClicked();"><i class="material-icons btn-plus-minus">add_circle</i></button>
+				                <button class="btn-expense" onclick="expenseClicked();"><i class="material-icons btn-plus-minus">remove_circle</i></button>
+		           	    
+                </div>
+				    	  <div class="track-container">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody id="track-table">
+                    </tbody>
+                  </table>
+                </div>
+				    </div>
+          </div>
 </div>
 
 
@@ -48,11 +72,11 @@ include("header.php");
 		  <hr/>
           
 		<div data-toggle="buttons" id="desc_group">
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Extra Income">
 			  		<input type="radio" name="q1" value="extra income">
 			  		<i class="material-icons">euro_symbol</i>
 		  		</label>
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Bonus">
 			  		<input type="radio" name="q1" value="bonus">
 			  		<i class="material-icons">star_rate</i>
 		  		</label>
@@ -82,35 +106,35 @@ include("header.php");
 		  <hr/>
           
 		<div data-toggle="buttons" id="expense_desc_group">
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Food">
 			  <input type="radio" name="q2" value="food">
 			  <i class="material-icons">local_dining</i>
 		  </label>
-          <label class="btn btn-default btn-circle btn-lg">
+          <label class="btn btn-default btn-circle btn-lg tool" title="Supermarket">
 			  <input type="radio" name="q2" value="supermarket">
 			  <i class="material-icons">local_grocery_store</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Nightout">
 			  <input type="radio" name="q2" value="nightout">
 			  <i class="material-icons">local_bar</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Entertainment">
 			  <input type="radio" name="q2" value="entertainment">
 			  <i class="material-icons">local_activity</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Shopping">
 			  <input type="radio" name="q2" value="shopping">
 			  <i class="material-icons">local_mall</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Activity">
 			  <input type="radio" name="q2" value="activity">
 			  <i class="material-icons">terrain</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Gift">
 			  <input type="radio" name="q2" value="gift">
 			  <i class="material-icons">local_florist</i>
 		  </label>
-		  <label class="btn btn-default btn-circle btn-lg">
+		  <label class="btn btn-default btn-circle btn-lg tool" title="Extra Expense">
 			  <input type="radio" name="q2" value="extra expense">
 			  <i class="material-icons">star</i>
 		  </label>
@@ -160,9 +184,10 @@ include("header.php");
     
 
 <?php
-include("footer.php");
+include ("footer.php");
 ?>
 <script>
+
   function incomeClicked(){
 	$("#myModal-income").modal();
   }
@@ -172,10 +197,42 @@ include("footer.php");
   }
   function goalClicked(){
     $("#myModal-goal").modal();
-	}
-	getSettingData();
+  }
+  function deleteTrack(id){
+    $.ajax({
+        type: 'GET',
+        contentType: 'application/json',
+        url: './api/deleteVariableById.php?id=' + id,
+        dataType: "json",
+        //data:  FormToJSON($('#form-banner_add')),
+        success: function(result, textStatus){
+          if(result['status'] == "success"){
+            getTodaysData();
+
+          }else{
+            console.log(result['message']);
+          }
+        },
+        error: function(textStatus){
+          console.log(textStatus);
+        }
+      });
+  }
+  function populateTrack(data){
+    var html = "";
+    for(var i = 0; i < data.length; i++){
+      html += "<tr>"+
+               "<td>"+data[i].description+"</td>"+
+               "<td>"+data[i].amount+" €</td>"+
+               "<td><i onclick='deleteTrack("+data[i].id+")' class='material-icons deleteTrack'>remove</i></td>"+
+               "</tr>";
+      
+    }
+    $("#track-table").html(html);
+  }
+	getTodaysData();
 	
-	function getSettingData(){
+	function getTodaysData(){
 		$.ajax({
         type: 'GET',
         contentType: 'application/json',
@@ -186,7 +243,12 @@ include("footer.php");
           if(result['status'] == "success"){
             console.log(result);
             
-
+            $("#goalPercentage-text").html(result.data.goalPercentage+"% completed");
+            $("#goalPercentage-bar").css("width",result.data.goalPercentage+"%");
+            $("#goalTitle").html(result.data.goalDescription + " in " + result.data.goalDday + " days");
+            $("#leftover-container").html(result.data.todayBudget+" €");
+            $("#dailybudget-container").html("Daily Budget : "+result.data.dailyBudget+" €");
+            populateTrack(result.data.trackdata);
             //populateSettingData(result);
 
 
@@ -224,7 +286,18 @@ include("footer.php");
 	  }
 	  .btn {
 		  outline:0 !important;
-	  }
+    }
+    #leftover-container{
+       width:100%;
+       text-align: center;
+       font-size:82px;
+       padding:20px;
+    }
+    #dailybudget-container{
+       width:100%;
+       text-align: center;
+       font-size:24px;
+    }
 	  
 
   </style>

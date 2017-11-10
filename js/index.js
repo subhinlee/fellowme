@@ -19,6 +19,7 @@ function addIncomeClicked(){
         success: function(data, textStatus){
           if(data['status'] == "success"){
             console.log("yeay");
+          	getTodaysData();
           }else{
             console.log(data['message']);
           }
@@ -50,6 +51,7 @@ function addExpenseClicked(){
         success: function(data, textStatus){
           if(data['status'] == "success"){
             console.log("yeay");
+            getTodaysData();
           }else{
             console.log(data['message']);
           }
@@ -82,6 +84,7 @@ function setGoalClicked(){
         success: function(data, textStatus){
           if(data['status'] == "success"){
             console.log("yeay");
+            getTodaysData();
           }else{
             console.log(data['message']);
           }
